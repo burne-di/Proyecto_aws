@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:docs": "tsc && vite build && npm run copy:assets",
+    "copy:assets": "node scripts/copy-docs-assets.js",
     "preview": "vite preview",
     "test": "vitest",
     "test:e2e": "playwright test",

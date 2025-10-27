@@ -12,8 +12,18 @@ export default defineConfig({
   },
   base: '/Proyecto_aws/',
   build: {
-    outDir: 'dist',
+    outDir: 'docs',
+    emptyOutDir: true,
     sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'ui-vendor': ['@radix-ui/react-tabs', '@radix-ui/react-toast', '@radix-ui/react-slot'],
+          'chart-vendor': ['recharts'],
+        },
+      },
+    },
   },
   server: {
     port: 3000,

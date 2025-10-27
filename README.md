@@ -318,14 +318,46 @@ pytest tests/test_api.py -v
 
 ## 🌐 Despliegue
 
-### GitHub Pages (Frontend)
+### GitHub Pages (Frontend) - ⭐ RECOMENDADO
 
-El proyecto está configurado para desplegar automáticamente en GitHub Pages:
+El proyecto está **100% configurado** para desplegar en GitHub Pages con un solo comando:
 
-1. Habilitar GitHub Pages en Settings → Pages
-2. Seleccionar "GitHub Actions" como fuente
-3. Push a la rama `main` activará el workflow automáticamente
-4. El sitio estará disponible en: `https://tu-usuario.github.io/Proyecto_aws`
+#### Paso 1: Generar Build para GitHub Pages
+
+```bash
+npm run build:docs
+```
+
+Este comando genera el build optimizado en la carpeta `docs/` que GitHub Pages puede servir directamente.
+
+#### Paso 2: Commit y Push
+
+```bash
+git add .
+git commit -m "feat: Deploy to GitHub Pages"
+git push origin main
+```
+
+#### Paso 3: Configurar GitHub Pages
+
+1. Ve a tu repositorio en GitHub
+2. **Settings** → **Pages**
+3. **Source**:
+   - Branch: `main`
+   - Folder: `/docs`
+4. **Save**
+
+¡Listo! Tu sitio estará en: `https://tu-usuario.github.io/Proyecto_aws/`
+
+**URLs disponibles:**
+- **Presentación**: `https://tu-usuario.github.io/Proyecto_aws/` (Landing page profesional)
+- **Dashboard**: `https://tu-usuario.github.io/Proyecto_aws/dashboard` (Monitor AWS)
+
+📖 **Guía detallada**: Ver [GITHUB_PAGES_SETUP.md](GITHUB_PAGES_SETUP.md)
+
+#### Actualizaciones Automáticas (Opcional)
+
+El proyecto incluye un workflow de GitHub Actions que actualiza automáticamente el build en cada push a `main`. Para activarlo, habilita permisos de escritura en Settings → Actions → General → "Read and write permissions".
 
 ### Backend (Opciones)
 
