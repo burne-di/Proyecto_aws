@@ -28,11 +28,14 @@ import {
   Users,
   Zap,
   ArrowRight,
+  ChevronDown,
+  ArrowDown,
 } from 'lucide-react'
 
 export default function ProjectPresentation() {
   const [activeTab, setActiveTab] = useState('overview')
   const navigate = useNavigate()
+  const [expandedLayer, setExpandedLayer] = useState<number | null>(null)
 
   const technologies = [
     { name: 'React 18', category: 'Frontend', icon: Code2, color: 'bg-blue-500' },
@@ -202,6 +205,87 @@ export default function ProjectPresentation() {
   const handleLinkedIn = () => {
     window.open('https://www.linkedin.com/in/rubenquispev/', '_blank')
   }
+
+  // Architecture layer data with expandable details
+  const architectureLayers = [
+    {
+      id: 1,
+      title: 'DATA SOURCES (OLTP)',
+      color: 'blue',
+      nodes: [
+        { name: 'PostgreSQL', subtitle: 'Orders', icon: Database },
+        { name: 'MySQL', subtitle: 'Customers', icon: Database },
+        { name: 'APIs', subtitle: 'Products', icon: Server },
+      ],
+      details: {
+        description: 'Transactional data sources with real-time operations',
+        metrics: ['5M+ rows', '100+ tables', '50 req/sec'],
+        technologies: ['PostgreSQL 14', 'MySQL 8', 'REST APIs'],
+      },
+    },
+    {
+      id: 2,
+      title: 'CHANGE DATA CAPTURE',
+      color: 'green',
+      nodes: [{ name: 'AWS DMS', subtitle: 'CDC Replication', icon: Network }],
+      details: {
+        description: 'Real-time data replication with change tracking',
+        metrics: ['<5s latency', '1M+ daily changes', '99.9% uptime'],
+        technologies: ['AWS DMS', 'Binary Log Replication', 'CDC Streams'],
+      },
+    },
+    {
+      id: 3,
+      title: 'DATA LAKE (S3 - Medallion)',
+      color: 'yellow',
+      nodes: [
+        { name: 'RAW', subtitle: 'Parquet', icon: Layers, color: 'yellow' },
+        { name: 'SILVER', subtitle: 'Cleaned', icon: Layers, color: 'cyan' },
+        { name: 'GOLD', subtitle: 'Aggregated', icon: Layers, color: 'purple' },
+      ],
+      details: {
+        description: 'Multi-layer data lake with medallion architecture',
+        metrics: ['500GB+ storage', '3 layers', '1000+ files/day'],
+        technologies: ['S3', 'Parquet', 'Partitioning', 'Compression'],
+      },
+    },
+    {
+      id: 4,
+      title: 'PROCESSING LAYER',
+      color: 'orange',
+      nodes: [
+        { name: 'AWS Glue', subtitle: 'PySpark ETL', icon: Cloud },
+        { name: 'Airflow', subtitle: 'Orchestration', icon: Workflow },
+      ],
+      details: {
+        description: 'Distributed processing and workflow orchestration',
+        metrics: ['25+ DAG tasks', '10 DPU capacity', '15min avg runtime'],
+        technologies: ['PySpark', 'Apache Airflow', 'AWS Glue', 'MWAA'],
+      },
+    },
+    {
+      id: 5,
+      title: 'DATA WAREHOUSE (OLAP)',
+      color: 'red',
+      nodes: [{ name: 'Redshift', subtitle: 'Star Schema + OLAP', icon: Database }],
+      details: {
+        description: 'Analytical warehouse with dimensional modeling',
+        metrics: ['30+ dbt models', '2TB data', '<2s query time'],
+        technologies: ['Amazon Redshift', 'dbt', 'Star Schema', 'OLAP Cubes'],
+      },
+    },
+    {
+      id: 6,
+      title: 'BUSINESS INTELLIGENCE',
+      color: 'indigo',
+      nodes: [{ name: 'QuickSight', subtitle: 'Dashboards', icon: BarChart3 }],
+      details: {
+        description: 'Self-service analytics and interactive dashboards',
+        metrics: ['50+ users', '20+ dashboards', '100K+ queries/mo'],
+        technologies: ['AWS QuickSight', 'SPICE', 'Auto-refresh', 'Mobile'],
+      },
+    },
+  ]
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
@@ -426,19 +510,70 @@ export default function ProjectPresentation() {
                 {/* Interactive Architecture Diagram */}
                 <div className="relative">
                   <style>{`
-                    @keyframes flow {
-                      0%, 100% { opacity: 0; }
-                      50% { opacity: 1; }
+                    @keyframes flowStream {
+                      0% {
+                        transform: translateY(-100%);
+                        opacity: 0;
+                      }
+                      10% {
+                        opacity: 1;
+                      }
+                      90% {
+                        opacity: 1;
+                      }
+                      100% {
+                        transform: translateY(100%);
+                        opacity: 0;
+                      }
                     }
-                    @keyframes pulse-slow {
-                      0%, 100% { opacity: 0.6; }
-                      50% { opacity: 1; }
+                    @keyframes dataParticle {
+                      0% {
+                        transform: translateY(-10px);
+                        opacity: 0;
+                      }
+                      50% {
+                        opacity: 1;
+                      }
+                      100% {
+                        transform: translateY(70px);
+                        opacity: 0;
+                      }
                     }
-                    .data-flow-arrow {
-                      animation: flow 3s ease-in-out infinite;
+                    @keyframes pulseGlow {
+                      0%, 100% {
+                        box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+                      }
+                      50% {
+                        box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+                      }
                     }
-                    .service-node {
-                      animation: pulse-slow 4s ease-in-out infinite;
+                    .flow-stream {
+                      position: absolute;
+                      width: 3px;
+                      height: 60px;
+                      background: linear-gradient(to bottom, transparent, #10b981, transparent);
+                      animation: flowStream 2s ease-in-out infinite;
+                      left: 50%;
+                      transform: translateX(-50%);
+                    }
+                    .data-particle {
+                      position: absolute;
+                      width: 6px;
+                      height: 6px;
+                      background: #10b981;
+                      border-radius: 50%;
+                      animation: dataParticle 3s ease-in-out infinite;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      box-shadow: 0 0 8px #10b981;
+                    }
+                    .node-hover {
+                      cursor: pointer;
+                      transition: all 0.3s ease;
+                    }
+                    .node-hover:hover {
+                      transform: scale(1.05);
+                      animation: pulseGlow 1s ease-in-out infinite;
                     }
                   `}</style>
 
