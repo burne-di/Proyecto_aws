@@ -1,9 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
+import { useNavigate } from 'react-router-dom'
 import { awsApi } from '@/services/api'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 import { Badge } from './ui/badge'
-import { Activity, Server, Database, Cloud, AlertTriangle } from 'lucide-react'
+import { Button } from './ui/button'
+import { Activity, Server, Database, Cloud, AlertTriangle, ArrowLeft } from 'lucide-react'
 import ServicesOverview from './ServicesOverview'
 import EC2Dashboard from './EC2Dashboard'
 import S3Dashboard from './S3Dashboard'
@@ -12,6 +14,7 @@ import DatabaseDashboard from './DatabaseDashboard'
 import CostDashboard from './CostDashboard'
 
 export default function Dashboard() {
+  const navigate = useNavigate()
   const { data: services, isLoading } = useQuery({
     queryKey: ['services'],
     queryFn: awsApi.getServices,
@@ -28,6 +31,15 @@ export default function Dashboard() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => navigate('/')}
+            className="mb-4"
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Project Overview
+          </Button>
           <h1 className="text-4xl font-bold tracking-tight">AWS Services Monitor</h1>
           <p className="text-muted-foreground mt-2">
             Real-time monitoring and verification of AWS infrastructure services
