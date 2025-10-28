@@ -73,9 +73,9 @@ export default function ProjectPresentation() {
       color: 'text-yellow-400',
     },
     {
-      title: 'Cost Reduction',
-      value: '40%',
-      description: 'Through serverless architecture',
+      title: 'Infrastructure Cost',
+      value: '$2.5K/mo',
+      description: 'Optimized serverless architecture',
       icon: DollarSign,
       color: 'text-green-400',
     },
@@ -88,8 +88,8 @@ export default function ProjectPresentation() {
     },
     {
       title: 'Business Users',
-      value: '100+',
-      description: 'Self-service analytics',
+      value: '50+',
+      description: 'Self-service analytics access',
       icon: Users,
       color: 'text-purple-400',
     },
@@ -192,15 +192,15 @@ export default function ProjectPresentation() {
   }
 
   const handleGitHub = () => {
-    window.open('https://github.com', '_blank')
+    window.open('https://github.com/rubenquispev', '_blank')
   }
 
   const handleEmail = () => {
-    window.location.href = 'mailto:your.email@example.com'
+    window.location.href = 'mailto:rubendqv@gmail.com'
   }
 
   const handleLinkedIn = () => {
-    window.open('https://linkedin.com', '_blank')
+    window.open('https://www.linkedin.com/in/rubenquispev/', '_blank')
   }
 
   return (
@@ -277,13 +277,13 @@ export default function ProjectPresentation() {
           {businessValue.map((item, index) => (
             <Card
               key={index}
-              className="bg-gradient-to-br from-white/10 to-white/5 border-white/20 backdrop-blur hover:from-white/15 hover:to-white/10 transition-all"
+              className="bg-gradient-to-br from-slate-800/90 to-slate-900/90 border-white/20 backdrop-blur hover:from-slate-700/90 hover:to-slate-800/90 transition-all shadow-xl"
             >
               <CardContent className="p-6">
                 <item.icon className={`w-12 h-12 mb-4 ${item.color}`} />
                 <div className="text-4xl font-bold text-white mb-2">{item.value}</div>
                 <h3 className="text-lg font-semibold text-white mb-1">{item.title}</h3>
-                <p className="text-sm text-gray-300">{item.description}</p>
+                <p className="text-sm text-gray-200">{item.description}</p>
               </CardContent>
             </Card>
           ))}
@@ -677,7 +677,7 @@ export default function ProjectPresentation() {
                 className="hover:scale-105 transition-transform"
               >
                 <Mail className="mr-2 h-5 w-5" />
-                your.email@example.com
+                rubendqv@gmail.com
               </Button>
               <Button
                 size="lg"
@@ -705,7 +705,7 @@ export default function ProjectPresentation() {
       {/* Footer */}
       <footer className="border-t border-white/10 py-8">
         <div className="container mx-auto px-4 text-center text-gray-400">
-          <p>© 2025 AWS E2E Data Engineering Platform. Built by [Your Name]</p>
+          <p>© 2025 AWS E2E Data Engineering Platform. Built by Ruben Quispe</p>
           <p className="text-sm mt-2">
             Demonstrating production-ready data engineering capabilities
           </p>
