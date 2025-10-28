@@ -206,7 +206,7 @@ export default function ProjectPresentation() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       {/* Hero Section */}
-      <div className="relative overflow-hidden py-20">
+      <div className="relative overflow-hidden py-12 md:py-20">
         <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:60px_60px]" />
 
         {/* Animated Background Circles */}
@@ -214,17 +214,24 @@ export default function ProjectPresentation() {
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
 
         <div className="relative container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start max-w-7xl mx-auto">
             {/* Left Side - Profile & Info */}
-            <div className="space-y-8">
+            <div className="space-y-6 lg:space-y-8">
               {/* Profile Section */}
               <div className="flex items-center gap-6">
                 <div className="relative group">
                   <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full opacity-75 group-hover:opacity-100 blur transition duration-1000 group-hover:duration-200 animate-pulse" />
                   <img
-                    src="/images/profile.jpg"
+                    src="/images/profile.svg"
                     alt="Ruben Quispe - Data Engineer"
-                    className="relative w-32 h-32 rounded-full object-cover border-4 border-slate-900 shadow-2xl"
+                    className="relative w-32 h-32 rounded-full object-cover border-4 border-slate-900 shadow-2xl bg-gradient-to-br from-blue-600 to-purple-600"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none'
+                      const fallback = document.createElement('div')
+                      fallback.className = 'relative w-32 h-32 rounded-full border-4 border-slate-900 shadow-2xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white text-4xl font-bold'
+                      fallback.textContent = 'RQ'
+                      e.currentTarget.parentElement?.appendChild(fallback)
+                    }}
                   />
                 </div>
                 <div>
@@ -237,17 +244,17 @@ export default function ProjectPresentation() {
               </div>
 
               {/* Main Title */}
-              <div className="space-y-4">
-                <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
+              <div className="space-y-3 lg:space-y-4">
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
                   Enterprise-Scale
                   <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 animate-gradient">
                     AWS Data Platform
                   </span>
                 </h1>
-                <p className="text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+                <p className="text-xl md:text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
                   OLTP → Data Lake → OLAP → BI
                 </p>
-                <p className="text-lg text-gray-300 leading-relaxed">
+                <p className="text-base md:text-lg text-gray-300 leading-relaxed">
                   Production-ready end-to-end data engineering platform built with AWS cloud-native services,
                   processing <span className="text-green-400 font-semibold">1M+ daily records</span> with
                   <span className="text-blue-400 font-semibold"> &lt;15min latency</span>
@@ -297,10 +304,10 @@ export default function ProjectPresentation() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="text-white border-white/20 hover:bg-white/10 [&_svg]:text-white [&_svg]:fill-white"
+                  className="text-white border-white/30 bg-white/5 hover:bg-white/15 backdrop-blur-sm [&_svg]:text-white"
                   onClick={handleGitHub}
                 >
-                  <Github className="mr-2 h-5 w-5 text-white fill-white" />
+                  <Github className="mr-2 h-5 w-5 text-white" strokeWidth={2} />
                   Source Code
                 </Button>
               </div>
