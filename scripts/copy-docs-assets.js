@@ -55,6 +55,26 @@ const readmePath = path.join(docsDir, 'README.md')
 fs.writeFileSync(readmePath, readmeContent)
 console.log('✅ Created README.md in docs/')
 
+// Copy images folder if exists
+const publicImagesDir = path.join(projectRoot, 'public', 'images')
+const docsImagesDir = path.join(docsDir, 'images')
+
+if (fs.existsSync(publicImagesDir)) {
+  if (!fs.existsSync(docsImagesDir)) {
+    fs.mkdirSync(docsImagesDir, { recursive: true })
+  }
+
+  const imageFiles = fs.readdirSync(publicImagesDir)
+  imageFiles.forEach(file => {
+    const srcPath = path.join(publicImagesDir, file)
+    const destPath = path.join(docsImagesDir, file)
+    fs.copyFileSync(srcPath, destPath)
+  })
+  console.log(`✅ Copied ${imageFiles.length} image(s) to docs/images/`)
+} else {
+  console.log('⚠️  No public/images/ folder found - skipping image copy')
+}
+
 console.log('\n🎉 GitHub Pages assets prepared successfully!')
 console.log('\n📝 Next steps:')
 console.log('1. Commit the docs/ folder')

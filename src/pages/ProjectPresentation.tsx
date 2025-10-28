@@ -206,42 +206,128 @@ export default function ProjectPresentation() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       {/* Hero Section */}
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden py-20">
         <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:60px_60px]" />
-        <div className="relative container mx-auto px-4 py-20">
-          <div className="text-center space-y-6 max-w-4xl mx-auto">
-            <Badge variant="outline" className="text-white border-white/20 px-4 py-2">
-              <Shield className="w-4 h-4 mr-2 inline" />
-              Production-Ready Data Platform
-            </Badge>
-            <h1 className="text-5xl md:text-7xl font-bold text-white animate-fade-in">
-              AWS E2E Data Engineering
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                OLTP → OLAP Platform
-              </span>
-            </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Complete end-to-end data platform showcasing modern data engineering best practices
-              with AWS, Airflow, dbt, and advanced analytics
-            </p>
-            <div className="flex gap-4 justify-center flex-wrap">
-              <Button
-                size="lg"
-                className="bg-blue-600 hover:bg-blue-700 transform hover:scale-105 transition-all"
-                onClick={handleViewDashboard}
-              >
-                <Play className="mr-2 h-5 w-5" />
-                View Live Dashboard
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="text-white border-white/20 hover:bg-white/10 [&_svg]:text-white [&_svg]:fill-white"
-                onClick={handleGitHub}
-              >
-                <Github className="mr-2 h-5 w-5 text-white fill-white" />
-                GitHub Repository
-              </Button>
+
+        {/* Animated Background Circles */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+
+        <div className="relative container mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+            {/* Left Side - Profile & Info */}
+            <div className="space-y-8">
+              {/* Profile Section */}
+              <div className="flex items-center gap-6">
+                <div className="relative group">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full opacity-75 group-hover:opacity-100 blur transition duration-1000 group-hover:duration-200 animate-pulse" />
+                  <img
+                    src="/images/profile.jpg"
+                    alt="Ruben Quispe - Data Engineer"
+                    className="relative w-32 h-32 rounded-full object-cover border-4 border-slate-900 shadow-2xl"
+                  />
+                </div>
+                <div>
+                  <h2 className="text-3xl font-bold text-white mb-2">Ruben Quispe</h2>
+                  <Badge variant="outline" className="text-white border-white/20 px-3 py-1">
+                    <Shield className="w-3 h-3 mr-2 inline" />
+                    Senior Data Engineer
+                  </Badge>
+                </div>
+              </div>
+
+              {/* Main Title */}
+              <div className="space-y-4">
+                <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
+                  Enterprise-Scale
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 animate-gradient">
+                    AWS Data Platform
+                  </span>
+                </h1>
+                <p className="text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+                  OLTP → Data Lake → OLAP → BI
+                </p>
+                <p className="text-lg text-gray-300 leading-relaxed">
+                  Production-ready end-to-end data engineering platform built with AWS cloud-native services,
+                  processing <span className="text-green-400 font-semibold">1M+ daily records</span> with
+                  <span className="text-blue-400 font-semibold"> &lt;15min latency</span>
+                </p>
+              </div>
+
+              {/* Tech Stack Icons */}
+              <div>
+                <p className="text-sm text-gray-400 mb-3 uppercase tracking-wide">Powered By</p>
+                <div className="flex flex-wrap gap-3">
+                  {[
+                    { name: 'AWS', icon: Cloud, color: 'bg-orange-500' },
+                    { name: 'Python', icon: Code2, color: 'bg-yellow-500' },
+                    { name: 'Airflow', icon: Workflow, color: 'bg-teal-500' },
+                    { name: 'dbt', icon: GitBranch, color: 'bg-orange-600' },
+                    { name: 'Redshift', icon: Database, color: 'bg-red-500' },
+                    { name: 'Terraform', icon: Layers, color: 'bg-purple-600' },
+                    { name: 'Docker', icon: Container, color: 'bg-blue-500' },
+                    { name: 'React', icon: Code2, color: 'bg-cyan-500' },
+                  ].map((tech, index) => {
+                    const Icon = tech.icon
+                    return (
+                      <div
+                        key={index}
+                        className="group relative flex items-center gap-2 bg-white/10 hover:bg-white/20 px-3 py-2 rounded-lg border border-white/10 hover:border-white/30 transition-all hover:scale-105 cursor-pointer"
+                      >
+                        <div className={`${tech.color} p-1.5 rounded`}>
+                          <Icon className="w-4 h-4 text-white" />
+                        </div>
+                        <span className="text-sm font-medium text-white">{tech.name}</span>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex gap-4 flex-wrap">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg shadow-blue-500/50 transform hover:scale-105 transition-all"
+                  onClick={handleViewDashboard}
+                >
+                  <Play className="mr-2 h-5 w-5" />
+                  View Live Dashboard
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="text-white border-white/20 hover:bg-white/10 [&_svg]:text-white [&_svg]:fill-white"
+                  onClick={handleGitHub}
+                >
+                  <Github className="mr-2 h-5 w-5 text-white fill-white" />
+                  Source Code
+                </Button>
+              </div>
+            </div>
+
+            {/* Right Side - Key Metrics */}
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { label: 'Daily Records', value: '1M+', icon: BarChart3, color: 'text-blue-400', bg: 'bg-blue-500/20' },
+                { label: 'Data Latency', value: '<15min', icon: Clock, color: 'text-green-400', bg: 'bg-green-500/20' },
+                { label: 'AWS Services', value: '15+', icon: Cloud, color: 'text-orange-400', bg: 'bg-orange-500/20' },
+                { label: 'Data Quality', value: '99.9%', icon: CheckCircle2, color: 'text-purple-400', bg: 'bg-purple-500/20' },
+                { label: 'DAG Tasks', value: '25+', icon: Workflow, color: 'text-teal-400', bg: 'bg-teal-500/20' },
+                { label: 'dbt Models', value: '30+', icon: GitBranch, color: 'text-yellow-400', bg: 'bg-yellow-500/20' },
+              ].map((metric, index) => {
+                const MetricIcon = metric.icon
+                return (
+                  <div
+                    key={index}
+                    className={`${metric.bg} backdrop-blur-xl p-6 rounded-xl border border-white/10 hover:border-white/30 transition-all hover:scale-105 cursor-pointer group`}
+                  >
+                    <MetricIcon className={`w-8 h-8 ${metric.color} mb-3 group-hover:scale-110 transition-transform`} />
+                    <div className={`text-3xl font-bold ${metric.color} mb-1`}>{metric.value}</div>
+                    <div className="text-sm text-gray-300">{metric.label}</div>
+                  </div>
+                )
+              })}
             </div>
           </div>
         </div>
