@@ -236,10 +236,10 @@ export default function ProjectPresentation() {
               <Button
                 size="lg"
                 variant="outline"
-                className="text-white border-white/20 hover:bg-white/10"
+                className="text-white border-white/20 hover:bg-white/10 [&_svg]:text-white [&_svg]:fill-white"
                 onClick={handleGitHub}
               >
-                <Github className="mr-2 h-5 w-5" />
+                <Github className="mr-2 h-5 w-5 text-white fill-white" />
                 GitHub Repository
               </Button>
             </div>
@@ -547,10 +547,10 @@ export default function ProjectPresentation() {
               <Button
                 size="lg"
                 variant="outline"
-                className="bg-white/10 border-white/30 text-white hover:bg-white/20 hover:scale-105 transition-all"
+                className="bg-white/10 border-white/30 text-white hover:bg-white/20 hover:scale-105 transition-all [&_svg]:text-white [&_svg]:fill-white"
                 onClick={handleGitHub}
               >
-                <Github className="mr-2 h-5 w-5" />
+                <Github className="mr-2 h-5 w-5 text-white fill-white" />
                 View More Projects
               </Button>
             </div>

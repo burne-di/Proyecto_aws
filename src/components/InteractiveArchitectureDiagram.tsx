@@ -155,7 +155,7 @@ export default function InteractiveArchitectureDiagram() {
             opacity: 1;
           }
           100% {
-            transform: translateY(70px);
+            transform: translateY(110px);
             opacity: 0;
           }
         }
@@ -170,11 +170,12 @@ export default function InteractiveArchitectureDiagram() {
         .flow-stream {
           position: absolute;
           width: 3px;
-          height: 60px;
+          height: 100px;
           background: linear-gradient(to bottom, transparent, #10b981, transparent);
           animation: flowStream 2s ease-in-out infinite;
           left: 50%;
           transform: translateX(-50%);
+          top: 0;
         }
         .data-particle {
           position: absolute;
@@ -202,17 +203,28 @@ export default function InteractiveArchitectureDiagram() {
           <div key={layer.id} className="mb-6">
             {/* Layer Header - Clickeable para expandir */}
             <div
-              className="cursor-pointer mb-4"
-              onClick={() => setExpandedLayer(expandedLayer === layer.id ? null : layer.id)}
+              className="cursor-pointer mb-4 hover:bg-white/5 rounded-lg p-2 transition-colors"
+              onClick={(e) => {
+                e.stopPropagation()
+                setExpandedLayer(expandedLayer === layer.id ? null : layer.id)
+              }}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  setExpandedLayer(expandedLayer === layer.id ? null : layer.id)
+                }
+              }}
             >
               <h4
-                className={`text-sm font-semibold ${getColorClass(layer.color, 'text')} text-center mb-3 flex items-center justify-center gap-2`}
+                className={`text-sm font-semibold ${getColorClass(layer.color, 'text')} text-center flex items-center justify-center gap-2`}
               >
                 <span>
                   {layerIndex + 1}. {layer.title}
                 </span>
                 <ChevronDown
-                  className={`w-4 h-4 transition-transform ${
+                  className={`w-4 h-4 transition-transform duration-300 ${
                     expandedLayer === layer.id ? 'rotate-180' : ''
                   }`}
                 />
@@ -295,7 +307,7 @@ export default function InteractiveArchitectureDiagram() {
 
             {/* Flow Animation (not last layer) */}
             {layerIndex < architectureLayers.length - 1 && (
-              <div className="relative h-20 my-4">
+              <div className="relative h-32 my-6">
                 {/* Multiple flowing streams */}
                 <div className="flow-stream" style={{ animationDelay: '0s' }} />
                 <div className="flow-stream" style={{ animationDelay: '0.3s' }} />
