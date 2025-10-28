@@ -115,14 +115,14 @@ export default function InteractiveArchitectureDiagram() {
 
   const getColorClass = (color: string, type: 'bg' | 'border' | 'text') => {
     const colorMap: Record<string, Record<string, string>> = {
-      blue: { bg: 'bg-blue-500/20', border: 'border-blue-500/50', text: 'text-blue-400' },
-      green: { bg: 'bg-green-500/20', border: 'border-green-500/50', text: 'text-green-400' },
-      yellow: { bg: 'bg-yellow-500/20', border: 'border-yellow-500/50', text: 'text-yellow-400' },
-      cyan: { bg: 'bg-cyan-500/20', border: 'border-cyan-500/50', text: 'text-cyan-400' },
-      purple: { bg: 'bg-purple-500/20', border: 'border-purple-500/50', text: 'text-purple-400' },
-      orange: { bg: 'bg-orange-500/20', border: 'border-orange-500/50', text: 'text-orange-400' },
-      red: { bg: 'bg-red-500/20', border: 'border-red-500/50', text: 'text-red-400' },
-      indigo: { bg: 'bg-indigo-500/20', border: 'border-indigo-500/50', text: 'text-indigo-400' },
+      blue: { bg: 'bg-blue-600/40', border: 'border-blue-500', text: 'text-blue-300' },
+      green: { bg: 'bg-green-600/40', border: 'border-green-500', text: 'text-green-300' },
+      yellow: { bg: 'bg-yellow-600/40', border: 'border-yellow-500', text: 'text-yellow-300' },
+      cyan: { bg: 'bg-cyan-600/40', border: 'border-cyan-500', text: 'text-cyan-300' },
+      purple: { bg: 'bg-purple-600/40', border: 'border-purple-500', text: 'text-purple-300' },
+      orange: { bg: 'bg-orange-600/40', border: 'border-orange-500', text: 'text-orange-300' },
+      red: { bg: 'bg-red-600/40', border: 'border-red-500', text: 'text-red-300' },
+      indigo: { bg: 'bg-indigo-600/40', border: 'border-indigo-500', text: 'text-indigo-300' },
     }
     return colorMap[color]?.[type] || ''
   }
@@ -197,7 +197,7 @@ export default function InteractiveArchitectureDiagram() {
         }
       `}</style>
 
-      <div className="bg-slate-900/50 p-8 rounded-xl border border-white/10">
+      <div className="bg-slate-900 p-8 rounded-xl border border-white/10 shadow-2xl">
         {architectureLayers.map((layer, layerIndex) => (
           <div key={layer.id} className="mb-6">
             {/* Layer Header - Clickeable para expandir */}
@@ -243,10 +243,12 @@ export default function InteractiveArchitectureDiagram() {
                     <div className="text-xs text-gray-300">{node.subtitle}</div>
 
                     {/* Tooltip on Hover */}
-                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
-                      <div className="bg-slate-800 text-white text-xs rounded px-3 py-2 whitespace-nowrap shadow-lg border border-white/10">
-                        Click layer title for details
+                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50">
+                      <div className="bg-slate-900 text-white text-xs rounded px-3 py-2 whitespace-nowrap shadow-2xl border-2 border-blue-400/50">
+                        Hover node • Click title to expand
                       </div>
+                      {/* Tooltip arrow */}
+                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-slate-900"></div>
                     </div>
                   </div>
                 )
@@ -255,7 +257,7 @@ export default function InteractiveArchitectureDiagram() {
 
             {/* Expandable Details Panel */}
             {expandedLayer === layer.id && (
-              <div className="mt-4 bg-white/5 rounded-lg p-4 border border-white/10 animate-in fade-in duration-300">
+              <div className="mt-4 bg-slate-800/60 rounded-lg p-4 border border-white/20 animate-in fade-in duration-300 shadow-lg">
                 <p className="text-sm text-gray-300 mb-3">{layer.details.description}</p>
 
                 <div className="grid md:grid-cols-2 gap-4">
@@ -316,7 +318,7 @@ export default function InteractiveArchitectureDiagram() {
         ))}
 
         {/* Legend */}
-        <div className="mt-8 p-4 bg-white/5 rounded-lg border border-white/10">
+        <div className="mt-8 p-4 bg-slate-800/40 rounded-lg border border-white/20 shadow-lg">
           <div className="flex items-center justify-center gap-6 text-xs text-gray-400 flex-wrap">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
