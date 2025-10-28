@@ -5,18 +5,15 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import InteractiveArchitectureDiagram from '@/components/InteractiveArchitectureDiagram'
+import TechLogo from '@/components/TechLogo'
 import {
   Database,
   GitBranch,
   Workflow,
   Cloud,
   BarChart3,
-  Code2,
-  Container,
-  FileCode,
   Layers,
   Network,
-  Server,
   Shield,
   CheckCircle2,
   Github,
@@ -35,18 +32,18 @@ export default function ProjectPresentation() {
   const navigate = useNavigate()
 
   const technologies = [
-    { name: 'React 18', category: 'Frontend', icon: Code2, color: 'bg-blue-500' },
-    { name: 'TypeScript', category: 'Frontend', icon: FileCode, color: 'bg-blue-600' },
-    { name: 'FastAPI', category: 'Backend', icon: Server, color: 'bg-green-600' },
-    { name: 'Python 3.11', category: 'Backend', icon: Code2, color: 'bg-yellow-600' },
-    { name: 'PostgreSQL', category: 'Database', icon: Database, color: 'bg-blue-700' },
-    { name: 'Redshift', category: 'Data Warehouse', icon: Database, color: 'bg-red-600' },
-    { name: 'Airflow', category: 'Orchestration', icon: Workflow, color: 'bg-teal-600' },
-    { name: 'dbt', category: 'Transformation', icon: GitBranch, color: 'bg-orange-600' },
-    { name: 'AWS Glue', category: 'ETL', icon: Cloud, color: 'bg-orange-500' },
-    { name: 'Docker', category: 'DevOps', icon: Container, color: 'bg-blue-400' },
-    { name: 'Terraform', category: 'IaC', icon: Layers, color: 'bg-purple-600' },
-    { name: 'QuickSight', category: 'BI', icon: BarChart3, color: 'bg-indigo-600' },
+    { name: 'React', displayName: 'React 18', category: 'Frontend', color: 'bg-blue-500' },
+    { name: 'TypeScript', displayName: 'TypeScript', category: 'Frontend', color: 'bg-blue-600' },
+    { name: 'FastAPI', displayName: 'FastAPI', category: 'Backend', color: 'bg-green-600' },
+    { name: 'Python', displayName: 'Python 3.11', category: 'Backend', color: 'bg-yellow-600' },
+    { name: 'PostgreSQL', displayName: 'PostgreSQL', category: 'Database', color: 'bg-blue-700' },
+    { name: 'Redshift', displayName: 'Redshift', category: 'Data Warehouse', color: 'bg-red-600' },
+    { name: 'Airflow', displayName: 'Airflow', category: 'Orchestration', color: 'bg-teal-600' },
+    { name: 'dbt', displayName: 'dbt', category: 'Transformation', color: 'bg-orange-600' },
+    { name: 'AWS', displayName: 'AWS Glue', category: 'ETL', color: 'bg-orange-500' },
+    { name: 'Docker', displayName: 'Docker', category: 'DevOps', color: 'bg-blue-400' },
+    { name: 'Terraform', displayName: 'Terraform', category: 'IaC', color: 'bg-purple-600' },
+    { name: 'AWS', displayName: 'QuickSight', category: 'BI', color: 'bg-indigo-600' },
   ]
 
   const awsServices = [
@@ -222,7 +219,7 @@ export default function ProjectPresentation() {
                 <div className="relative group">
                   <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full opacity-75 group-hover:opacity-100 blur transition duration-1000 group-hover:duration-200 animate-pulse" />
                   <img
-                    src="/images/profile.svg"
+                    src={`${import.meta.env.BASE_URL}images/profile.svg`}
                     alt="Ruben Quispe - Data Engineer"
                     className="relative w-32 h-32 rounded-full object-cover border-4 border-slate-900 shadow-2xl bg-gradient-to-br from-blue-600 to-purple-600"
                     onError={(e) => {
@@ -266,28 +263,25 @@ export default function ProjectPresentation() {
                 <p className="text-sm text-gray-400 mb-3 uppercase tracking-wide">Powered By</p>
                 <div className="flex flex-wrap gap-3">
                   {[
-                    { name: 'AWS', icon: Cloud, color: 'bg-orange-500' },
-                    { name: 'Python', icon: Code2, color: 'bg-yellow-500' },
-                    { name: 'Airflow', icon: Workflow, color: 'bg-teal-500' },
-                    { name: 'dbt', icon: GitBranch, color: 'bg-orange-600' },
-                    { name: 'Redshift', icon: Database, color: 'bg-red-500' },
-                    { name: 'Terraform', icon: Layers, color: 'bg-purple-600' },
-                    { name: 'Docker', icon: Container, color: 'bg-blue-500' },
-                    { name: 'React', icon: Code2, color: 'bg-cyan-500' },
-                  ].map((tech, index) => {
-                    const Icon = tech.icon
-                    return (
-                      <div
-                        key={index}
-                        className="group relative flex items-center gap-2 bg-white/10 hover:bg-white/20 px-3 py-2 rounded-lg border border-white/10 hover:border-white/30 transition-all hover:scale-105 cursor-pointer"
-                      >
-                        <div className={`${tech.color} p-1.5 rounded`}>
-                          <Icon className="w-4 h-4 text-white" />
-                        </div>
-                        <span className="text-sm font-medium text-white">{tech.name}</span>
+                    { name: 'AWS', color: 'bg-orange-500' },
+                    { name: 'Python', color: 'bg-yellow-500' },
+                    { name: 'Airflow', color: 'bg-teal-500' },
+                    { name: 'dbt', color: 'bg-orange-600' },
+                    { name: 'Redshift', color: 'bg-red-500' },
+                    { name: 'Terraform', color: 'bg-purple-600' },
+                    { name: 'Docker', color: 'bg-blue-500' },
+                    { name: 'React', color: 'bg-cyan-500' },
+                  ].map((tech, index) => (
+                    <div
+                      key={index}
+                      className="group relative flex items-center gap-2 bg-white/10 hover:bg-white/20 px-3 py-2 rounded-lg border border-white/10 hover:border-white/30 transition-all hover:scale-105 cursor-pointer"
+                    >
+                      <div className={`${tech.color} p-1.5 rounded`}>
+                        <TechLogo name={tech.name} className="w-4 h-4 text-white" />
                       </div>
-                    )
-                  })}
+                      <span className="text-sm font-medium text-white">{tech.name}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -594,10 +588,10 @@ export default function ProjectPresentation() {
                       className="flex items-center gap-3 bg-white/5 p-4 rounded-lg hover:bg-white/10 transition-all hover:scale-105"
                     >
                       <div className={`${tech.color} p-2 rounded-lg`}>
-                        <tech.icon className="w-6 h-6 text-white" />
+                        <TechLogo name={tech.name} className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <div className="font-semibold text-white">{tech.name}</div>
+                        <div className="font-semibold text-white">{tech.displayName}</div>
                         <div className="text-xs text-gray-400">{tech.category}</div>
                       </div>
                     </div>
