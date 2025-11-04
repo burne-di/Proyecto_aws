@@ -610,9 +610,9 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para
 ## 👨‍💻 Autor
 
 **Tu Nombre**
-- LinkedIn: [tu-perfil](https://linkedin.com/in/tu-perfil)
-- GitHub: [@tu-usuario](https://github.com/tu-usuario)
-- Email: tu.email@example.com
+📧 Email: rubendqv@gmail.com
+💼 LinkedIn: linkedin.com/in/rubenquispev/
+🐙 GitHub: github.com/burne-di
 
 ---
 
